@@ -33,7 +33,7 @@ class Game
   p  $computer_hand = $computer.hand[0][0].num + $computer.hand[0][1].num
 
   end
-
+  
   def check_values
     if $person_hand > $computer_hand
       $person.bankroll += 10
