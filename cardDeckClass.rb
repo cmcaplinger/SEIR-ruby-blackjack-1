@@ -64,14 +64,17 @@ class Deck
     end
 end
 
-game_deck = Deck.new [],[2,3,4,5,6,7,8,9,10,'J','Q','K','A']
-game_deck.make_suit "Clubs"
-game_deck.make_suit "Diamonds"
-game_deck.make_suit "Hearts"
-game_deck.make_suit "Spades"
+# making the deck
+# game_deck = Deck.new [],[2,3,4,5,6,7,8,9,10,'J','Q','K','A']
+# making various suits
+# game_deck.make_suit "Clubs"
+# game_deck.make_suit "Diamonds"
+# game_deck.make_suit "Hearts"
+# game_deck.make_suit "Spades"
+#
+# game_deck.shuffle
 
-game_deck.shuffle
-
-p game_deck.deck.first
-p game_deck.deck.last
-p game_deck.deck.uniq.length
+# checking that its created
+# p game_deck.deck.first
+# p game_deck.deck.last
+# p game_deck.deck.uniq.length
