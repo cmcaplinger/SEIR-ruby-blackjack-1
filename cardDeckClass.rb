@@ -74,3 +74,10 @@ end
 #
 # game_deck.shuffle
 
+<<<<<<< HEAD
+=======
+# checking that its created
+# p game_deck.deck.first
+# p game_deck.deck.last
+# p game_deck.deck.uniq.length
+>>>>>>> origin/dev
