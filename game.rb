@@ -29,7 +29,7 @@ class Game
   def deal_cards
      $person.hand.push($game_deck.deck.first(2))
      $computer.hand.push($game_deck.deck.last(2))
-    p $person.hand[0]
+    p $person.hand[0][0].num
     # p $player_hand = $person.hand[0][0] + $person.hand[1][@num].to_i
     # p $computer_hand = $computer.hand[0][@num].to_i + $computer.hand[1][@num].to_i
   end
