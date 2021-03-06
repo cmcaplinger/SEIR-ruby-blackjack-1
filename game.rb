@@ -32,8 +32,6 @@ class Game
   p  $person_hand = $person.hand[0][0].num + $person.hand[0][0].num
   p  $computer_hand = $computer.hand[0][0].num + $computer.hand[0][0].num
 
-
-    # p $computer_hand = $computer.hand[0][@num].to_i + $computer.hand[1][@num].to_i
   end
 
   def check_values
@@ -52,6 +50,10 @@ class Game
     else
       p 'It was a tie!'
     end
+
+    
+
+
 end
 
 
