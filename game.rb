@@ -27,11 +27,15 @@ $game_deck.shuffle
 class Game
 
   def deal_cards
-     $person.hand.push($game_deck.deck.first(2))
-     $computer.hand.push($game_deck.deck.last(2))
+    $game_deck.deck.shuffle
+    p $game_deck.deck.first(2)
+    p $game_deck.deck.last(2)
+    $person.hand.push($game_deck.deck.sample(2))
+    $computer.hand.push($game_deck.deck.sample(2))
+    
   p  $person_hand = $person.hand[0][0].num + $person.hand[0][1].num
   p  $computer_hand = $computer.hand[0][0].num + $computer.hand[0][1].num
-
+  # p $game_deck.deck.uniq.length
   end
   
   def check_values
@@ -50,13 +54,28 @@ class Game
     else
       p 'It was a tie!'
     end
-
-    
-
-
+    self.play_again
 end
 
+def play_again
+  p 'Would you like to play more? d = deal / q = quit'
+  answer = gets.chomp.downcase
 
+  if answer == 'd'
+
+    
+    $person.hand.clear()
+    $computer.hand.clear()
+    
+  
+    self.deal_cards
+    self.check_values
+  elsif answer == 'q'
+    p "Good Game!! Have a Good One"
+  else 
+    self.play_again
+  end
+end
 
 
 end

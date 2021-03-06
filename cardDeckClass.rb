@@ -54,13 +54,20 @@ class Deck
 #which means we need a player class with a hand
 
     def shuffle 
-        i = 0
-        while i < self.deck.length do 
+        # i = 0
+        # while i < self.deck.length do 
+        #     decklength = (0...52).to_a;
+        #     x = decklength.sample
+        #     self.deck[x], self.deck[i] = self.deck[i], self.deck[x]
+        #     i = i + 1
+        # end
+        52.times do |i|
             decklength = (0...52).to_a;
             x = decklength.sample
             self.deck[x], self.deck[i] = self.deck[i], self.deck[x]
             i = i + 1
         end
+        # i = 0
     end
 end
 
@@ -74,10 +81,7 @@ end
 #
 # game_deck.shuffle
 
-<<<<<<< HEAD
-=======
 # checking that its created
 # p game_deck.deck.first
 # p game_deck.deck.last
 # p game_deck.deck.uniq.length
->>>>>>> origin/dev
