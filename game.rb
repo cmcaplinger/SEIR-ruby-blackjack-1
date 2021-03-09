@@ -27,29 +27,32 @@ $game_deck.shuffle
   class Game
 
   def deal_cards
-    $game_deck.deck.shuffle
-    p $game_deck.deck.first(2)
-    p $game_deck.deck.last(2)
-    $person.hand.push($game_deck.deck.sample(2))
-    $computer.hand.push($game_deck.deck.sample(2))
-    
-  p  $person_hand = $person.hand[0][0].num + $person.hand[0][1].num
-  p  $computer_hand = $computer.hand[0][0].num + $computer.hand[0][1].num
-  # p $game_deck.deck.uniq.length
-  end
+        $game_deck.deck.shuffle
+        $game_deck.deck.first(2)
+        $game_deck.deck.last(2)
+        $person.hand.push($game_deck.deck.sample(2))
+        $computer.hand.push($game_deck.deck.sample(2))
+        
+        $person_hand = $person.hand[0][0].num + $person.hand[0][1].num
+        $computer_hand = $computer.hand[0][0].num + $computer.hand[0][1].num
+
+        p "#{$person.name}'s hand is "+ $person.hand[0][0].name.to_s + " & " + $person.hand[0][1].name.to_s + ". The sum of these cards is " + $person_hand.to_s
+      # p $game_deck.deck.uniq.length
+        p "Computer's hand is "+ $computer.hand[0][0].name.to_s + " & " + $computer.hand[0][1].name.to_s  + ". The sum of these cards is " + $computer_hand.to_s 
+    end
   
   def check_values
     if $person_hand > $computer_hand
       $person.bankroll += 10
       $computer.bankroll -= 10
       p "#{$person.name} wins!"
-      p "Player has $#{$person.bankroll}"
+      p "#{$person.name} has $#{$person.bankroll}"
       p "Computer has $#{$computer.bankroll}"
     elsif $computer_hand > $person_hand
       $person.bankroll -= 10
       $computer.bankroll += 10
       p 'Computer Wins!'
-      p "Player has $#{$person.bankroll}"
+      p "#{$person.name} has $#{$person.bankroll}"
       p "Computer has $#{$computer.bankroll}"
     else
       p 'It was a tie!'
@@ -58,29 +61,31 @@ $game_deck.shuffle
 end
 
 def play_again
-  p 'Would you like to play more? d = deal / q = quit'
-  answer = gets.chomp.downcase
-
-  if answer == 'd'
-
+  if $person.bankroll <= 0 
+    p "Game Over, gg!! You have no money"
     
-    $person.hand.clear()
-    $computer.hand.clear()
-    
-  
-    self.deal_cards
-    self.check_values
-  elsif answer == 'q'
-    p "Good Game!! Have a Good One"
+  elsif $computer.bankroll <= 0 
+    p "Somehow you beat the computer"
+
   else 
-    self.play_again
+    p 'Would you like to play more? d = deal / q = quit'
+    answer = gets.chomp.downcase
+
+      if answer == 'd'
+        $person.hand.clear()
+        $computer.hand.clear()
+        self.deal_cards
+        self.check_values
+      elsif answer == 'q'
+        p "Good Game!! Have a Good One"
+      else 
+        self.play_again
+      end
   end
 end
 
 
-end
-
- 
+end 
 
 game = Game.new
 # game.create_players
