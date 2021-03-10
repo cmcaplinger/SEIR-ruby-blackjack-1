@@ -20,7 +20,7 @@ $game_deck.make_suit "Spades"
 
 $game_deck.shuffle
 
-
+$player_bet = 10
 
 # create the deck and the players
 
@@ -28,8 +28,6 @@ $game_deck.shuffle
 
   def deal_cards
         $game_deck.deck.shuffle
-        $game_deck.deck.first(2)
-        $game_deck.deck.last(2)
         $person.hand.push($game_deck.deck.sample(2))
         $computer.hand.push($game_deck.deck.sample(2))
         
@@ -39,18 +37,33 @@ $game_deck.shuffle
         p "#{$person.name}'s hand is "+ $person.hand[0][0].name.to_s + " & " + $person.hand[0][1].name.to_s + ". The sum of these cards is " + $person_hand.to_s
       # p $game_deck.deck.uniq.length
         p "Computer's hand is "+ $computer.hand[0][0].name.to_s + " & " + $computer.hand[0][1].name.to_s  + ". The sum of these cards is " + $computer_hand.to_s 
+
+      self.another_card
     end
+
+  def another_card
+    if $person_hand > 21 
+      
+
+    if $person.hand[0][0].num == 11 && $person_hand > 21 
+      $person.hand[0][0].num = 1
+    elsif $person.hand[0][1].num == 11 && $person_hand > 21 
+      $person.hand[0][1].num = 1
+    end
+
+    self.check_values
+  end
   
   def check_values
     if $person_hand > $computer_hand
-      $person.bankroll += 10
-      $computer.bankroll -= 10
+      $person.bankroll += $player_bet
+      $computer.bankroll -= $player_bet
       p "#{$person.name} wins!"
       p "#{$person.name} has $#{$person.bankroll}"
       p "Computer has $#{$computer.bankroll}"
     elsif $computer_hand > $person_hand
-      $person.bankroll -= 10
-      $computer.bankroll += 10
+      $person.bankroll -= $player_bet
+      $computer.bankroll += $player_bet
       p 'Computer Wins!'
       p "#{$person.name} has $#{$person.bankroll}"
       p "Computer has $#{$computer.bankroll}"
@@ -68,7 +81,7 @@ def play_again
     p "Somehow you beat the computer"
 
   else 
-    p 'Would you like to play more? d = deal / q = quit'
+    p "Would you like to play more? Your default bet is now $#{$player_bet}, d = deal / q = quit / c = check bankroll / b = change bet"
     answer = gets.chomp.downcase
 
       if answer == 'd'
@@ -78,6 +91,19 @@ def play_again
         self.check_values
       elsif answer == 'q'
         p "Good Game!! Have a Good One"
+      elsif answer == 'c'
+        p "Bankroll: $" + $person.bankroll.to_s
+        self.play_again
+      elsif answer == 'b'
+        p "How much do you want to bet?"
+        $player_bet = gets.chomp.to_i
+          if $player_bet < 10 
+            p "Invalid bet automatically betting $10"
+            $player_bet = 10
+            self.play_again
+          else
+            self.play_again
+          end
       else 
         self.play_again
       end
