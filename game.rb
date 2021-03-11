@@ -6,7 +6,7 @@ require_relative 'playerClass'
 # creating person and computer
 $person = Player.new '', [], 100
 p $person.accept_name
-# p $person
+
 
 $computer = Player.new 'Computer', [], 10000
 
@@ -35,25 +35,10 @@ $player_bet = 10
         $computer_hand = $computer.hand[0][0].num + $computer.hand[0][1].num
 
         p "#{$person.name}'s hand is "+ $person.hand[0][0].name.to_s + " & " + $person.hand[0][1].name.to_s + ". The sum of these cards is " + $person_hand.to_s
-      # p $game_deck.deck.uniq.length
-        p "Computer's hand is "+ $computer.hand[0][0].name.to_s + " & " + $computer.hand[0][1].name.to_s  + ". The sum of these cards is " + $computer_hand.to_s 
-
-      self.another_card
-    end
-
-  def another_card
-    if $person_hand > 21 
       
-
-    if $person.hand[0][0].num == 11 && $person_hand > 21 
-      $person.hand[0][0].num = 1
-    elsif $person.hand[0][1].num == 11 && $person_hand > 21 
-      $person.hand[0][1].num = 1
+        p "Computer's hand is "+ $computer.hand[0][0].name.to_s + " & " + $computer.hand[0][1].name.to_s  + ". The sum of these cards is " + $computer_hand.to_s 
     end
 
-    self.check_values
-  end
-  
   def check_values
     if $person_hand > $computer_hand
       $person.bankroll += $player_bet
@@ -114,10 +99,6 @@ end
 end 
 
 game = Game.new
-# game.create_players
-# game.create_deck
+
 game.deal_cards
 game.check_values
-# deal the cards to the player
-# compare the hands and add the winnings (always 10 dollars)
-#

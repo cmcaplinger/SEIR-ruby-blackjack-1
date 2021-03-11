@@ -15,8 +15,3 @@ class Player
     
 end
 
-# person = Player.new '', [], 100
-# p person.accept_name
-# p person
-#
-# computer = Player.new 'Computer', [], 10000
