@@ -46,42 +46,17 @@ class Deck
     end
 
 #print the deck and it's length to check everything
-# p $deck
-# p $deck.length
 
 ## We need to shuffle the deck and deal 
 
 #which means we need a player class with a hand
 
     def shuffle 
-        # i = 0
-        # while i < self.deck.length do 
-        #     decklength = (0...52).to_a;
-        #     x = decklength.sample
-        #     self.deck[x], self.deck[i] = self.deck[i], self.deck[x]
-        #     i = i + 1
-        # end
         52.times do |i|
             decklength = (0...52).to_a;
             x = decklength.sample
             self.deck[x], self.deck[i] = self.deck[i], self.deck[x]
             i = i + 1
         end
-        # i = 0
     end
 end
-
-# making the deck
-# game_deck = Deck.new [],[2,3,4,5,6,7,8,9,10,'J','Q','K','A']
-# making various suits
-# game_deck.make_suit "Clubs"
-# game_deck.make_suit "Diamonds"
-# game_deck.make_suit "Hearts"
-# game_deck.make_suit "Spades"
-#
-# game_deck.shuffle
-
-# checking that its created
-# p game_deck.deck.first
-# p game_deck.deck.last
-# p game_deck.deck.uniq.length
